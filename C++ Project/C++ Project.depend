@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1716906020 source:c:\users\adina\desktop\dentist management system\c++ project\src\customer.cpp
+	"Customer.h"
+	<iostream>
+	<algorithm>
+
+1716908713 c:\users\adina\desktop\dentist management system\c++ project\include\customer.h
+	<string>
+	<vector>
+	"Appointment.h"
+
+1716547869 source:c:\users\adina\desktop\dentist management system\c++ project\src\date.cpp
+	"Date.h"
+
+1716547869 c:\users\adina\desktop\dentist management system\c++ project\include\date.h
+
+1716907756 source:c:\users\adina\desktop\dentist management system\c++ project\src\employee.cpp
+	"Employee.h"
+	<iostream>
+	<algorithm>
+
+1716904049 c:\users\adina\desktop\dentist management system\c++ project\include\employee.h
+	<string>
+	<vector>
+	"Appointment.h"
+
+1716908614 source:c:\users\adina\desktop\dentist management system\c++ project\main.cpp
+	<iostream>
+	"Customer.h"
+	"Employee.h"
+	"input_output.h"
+	<stdlib.h>
+	<string.h>
+
+1716904169 c:\users\adina\desktop\dentist management system\c++ project\include\input_output.h
+	<vector>
+	<string>
+	"Appointment.h"
+
+1716556202 c:\users\adina\desktop\dentist management system\c++ project\include\customer_menu.h
+	<iostream>
+	<stdlib.h>
+
+1716907775 source:c:\users\adina\desktop\dentist management system\c++ project\src\input_output.cpp
+	"input_output.h"
+	<fstream>
+	<sstream>
+
+1716905402 c:\users\adina\desktop\dentist management system\c++ project\include\appointment.h
+	<string>
+
+1716905968 source:c:\users\adina\desktop\dentist management system\c++ project\src\appointment.cpp
+	"Appointment.h"
+	<iostream>
+
+1716904362 source:c:\users\adina\desktop\dentist management system\c++ project\src\customer_menu.cpp
+	"customer_menu.h"
+
