@@ -12,60 +12,80 @@ void procedure_menu(){
     std::cout << "4.Root Canal Treatment" << std::endl;
     std::cout << "5.Implant" << std::endl;
 }
+void dentist_menu(){
+    std::cout << "1.Cazacu_Drumitru" << std::endl;
+    std::cout << "2.Bogdan_Octavian" << std::endl;
+    std::cout << "3.Ardeleanu_Mircea" << std::endl;
+    std::cout << "4.Girgiu_Victoria" << std::endl;
+    std::cout << "5.Olteanu_Tania" << std::endl;
+}
 void menu_customer(Customer customer){
     std :: cout << "\t1.Make appointment" << std :: endl;
     std :: cout << "\t2.See your appointments" << std:: endl;
     std :: cout << "\t3.Exit" << std :: endl;
 
-    std :: cout << "Choose action: ";
+    std :: cout << "\tChoose action: ";
     int choice;
     std :: cin >> choice;
     if (choice == 1){
         procedure_menu();
-        std::cout << "Enter procedure number: ";
+        std::cout << "\tEnter procedure number: ";
         char procedure_number[2];
         std::cin >> procedure_number;
-        std::cout << "Enter time of procedure (ex: 2024-06-01 11:00):";
+        std::cout << "\tEnter time of procedure (ex: 2024-06-01_11:00):";
         char procedure_time[60];
         std::cin >> procedure_time;
-        Appointment app(procedure_number,procedure_time,customer.getEmail());
+        dentist_menu();
+        std::cout << "\tEnter dentist name: ";
+        char dentist_name[60];
+        std::cin >> dentist_name;
+
+        Appointment app(procedure_number,procedure_time,customer.getEmail(),dentist_name);
         customer.makeAppointment(app);
         readAppointments.push_back(app);
-        std::cout << "New appointment registered" << std::endl;
+        system("CLS");
+        std::cout << "\tNew appointment registered" << std::endl;
 
         menu_customer(customer);
 
     }else if (choice == 2){
         customer.viewAppointments(readAppointments,customer.getEmail());
         std :: cout << "\tWhat do you want to do next?:" << std :: endl;
-        std :: cout << "\t1.Change Appointment Time" << std:: endl;
+        std :: cout << "\t1.Change Appointment" << std:: endl;
         std :: cout << "\t2.Delete Appointment" << std :: endl;
         std :: cout << "\t3.None of the above" << std :: endl;
         int choice_2;
         std :: cout << "\t My choice: ";
         std :: cin >> choice_2;
         if (choice_2 == 1){
-               std::cout << "Enter new procedure (if you don't want to change procedure, type the old one): ";
-               char newprocedure[60];
+                procedure_menu();
+               std::cout << "\tEnter new procedure (if you don't want to change procedure, type the old one): ";
+               char newprocedure[2];
                std::cin >> newprocedure;
-               std::cout << "Enter old time: ";
+               std::cout << "\tEnter old time: ";
                 char oldprocedure_time[60];
                std::cin >> oldprocedure_time;
-               std::cout << "Enter new time: ";
+               std::cout << "\tEnter new time (if you don't want to change time, type the old one): ";
                char newprocedure_time[60];
                std::cin >> newprocedure_time;
-               Appointment appc(newprocedure,newprocedure_time,customer.getEmail());
-               customer.changeAppointment(oldprocedure_time,appc);
-               std::cout << "Appointment change successfully! ";
+               dentist_menu();
+               std::cout << "\tEnter new dentist name (if you don't want to change the dentist, type the old one): ";
+               char dentist_name[60];
+               std::cin >> dentist_name;
+               Appointment appc(newprocedure,newprocedure_time,customer.getEmail(),dentist_name);
+               customer.changeAppointment(readAppointments,oldprocedure_time,appc);
+               system("CLS");
+               std::cout << "\tAppointment change successfully! " << std::endl;
                menu_customer(customer);
 
 
         }else if (choice_2 == 2){
-            std::cout << "Enter the time of the appointment you want to delete: ";
+            std::cout << "\tEnter the time of the appointment you want to delete: ";
             char olprocedure_time[60];
             std::cin >> olprocedure_time;
-            customer.deleteAppointment(olprocedure_time);
-            std::cout << "Appointment deleted successfully! ";
+            customer.deleteAppointment(readAppointments,olprocedure_time);
+            system("CLS");
+            std::cout << "\tAppointment deleted successfully! " << std::endl;
             menu_customer(customer);
 
 
@@ -74,11 +94,63 @@ void menu_customer(Customer customer){
         }
 
     }else {
-        std :: cout << "\tExit complete!";
         system("CLS");
+        std :: cout << "\tExit complete!";
+
     }
 };
-void menu_employee();
+void menu_dentist(Employee dentist){
+    std :: cout << "\tWhat do you want to do next?" << std :: endl;
+    std::cout << "\t1.View Appointments" << std :: endl;
+    std::cout << "\t2.Accept Appointment" << std :: endl;
+    std::cout << "\t3.Reject Appointment" << std :: endl;
+    std::cout << "\t4.Exit" << std :: endl;
+    std:: cout << "\tMy choice : ";
+    int choice;
+    std :: cin >> choice;
+    if (choice == 1){
+            dentist.viewAppointments(readAppointments,dentist.getName());
+            menu_dentist(dentist);
+
+    }else if (choice == 2){
+        system("CLS");
+        dentist.viewAppointments(readAppointments,dentist.getName());
+        std :: cout << "\tEnter the time of the appointment you want to accept :";
+        char time_acc[60];
+        std :: cin >> time_acc;
+        std :: cout << "\tEnter the email of the appointment you want to accept :";
+        char email_acc[60];
+        std :: cin >> email_acc;
+        dentist.approveAppointment(readAppointments,time_acc,dentist.getName(),email_acc);
+        system("CLS");
+        std :: cout << "\tAppointment accepted successfully!" << std :: endl;
+        menu_dentist(dentist);
+
+
+    }else if(choice == 3){
+        system("CLS");
+        dentist.viewAppointments(readAppointments,dentist.getName());
+        std :: cout << "\tEnter the time of the appointment you want to reject :";
+        char time_acc[60];
+        std :: cin >> time_acc;
+        std :: cout << "\tEnter the email of the appointment you want to accept :";
+        char email_acc[60];
+        std :: cin >> email_acc;
+        dentist.rejectAppointment(readAppointments,time_acc,dentist.getName(),email_acc);
+        system("CLS");
+        std :: cout << "\tAppointment rejected successfully!" << std :: endl;
+        menu_dentist(dentist);
+
+    }else{
+        system("CLS");
+        std :: cout << "\tExit complete!";
+
+    }
+
+
+
+
+}
 
 int main()
 {
@@ -109,13 +181,16 @@ int main()
            std :: cin >> pass;
            std::cout << std::endl;
            if (strcmp(pass,"brightsmile") != 0){
-            std:: cout << "Incorrect password! Only employees allowed!";
             system("CLS");
+            std:: cout << "Incorrect password! Only employees allowed!" << std :: endl;
             main();
 
            }else {
-               //menu_dentist();
-               std::cout << "haha";
+               std :: cout << "Enter your name (ex. Alina_Popescu) : ";
+               char name_dentist[60];
+               std :: cin >> name_dentist;
+               Employee dentist(name_dentist);
+               menu_dentist(dentist);
            }
 
     }else {
@@ -135,27 +210,6 @@ int main()
 
     }
 
-
-
-
-
-
-    // Employee approves an appointment
-    //employee.approveAppointment("1");
-
-    // Customer changes the appointment
-    //Appointment app2("1", "2024-06-01 11:00", "john.doe@example.com");
-    //customer.changeAppointment("1", app2);
-
-    // Customer views their updated appointments
-    //std::cout << "\nUpdated Customer's Appointments:\n";
-    //customer.viewAppointments();
-
-    // Employee views updated appointments
-    //std::cout << "\nUpdated Employee's Appointments:\n";
-    //employee.viewAppointments();
-
-    // Write updated appointments to CSV
     input_output::writeAppointmentsToCSV("appointments.csv", readAppointments);
 
     return 0;

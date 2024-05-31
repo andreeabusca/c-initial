@@ -1,4 +1,5 @@
-Procedure,Time,CustomerEmail,Status
-1,2024-06-01 10:00,john.doe@example.com,Pending
-2,2024-07-27,tom_smith87@gmail.com,Pending
-1,2024-03-12,maria_cazacu324734@gmail.com,Pending
+Procedure,Time,CustomerEmail,Status,Dentist
+2,2024-08-20_12:00,adina@gmail.com,Approved,Cazacu_Dumitru
+3,2024-11-19_13:12,andreea@gmail.com,Approved,Cazacu_Dumitru
+2,2024-11-19_13:12,adina@gmail.com,Rejected,Cazacu_Dumitru
+1,2024-11-19_13:12,alexia@gmail.com,Pending,Bogdan_Octavian

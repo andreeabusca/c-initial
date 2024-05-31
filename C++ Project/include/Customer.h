@@ -11,8 +11,8 @@ public:
 
     void viewAppointments(std::vector<Appointment> appointments,const std::string& email) const;
     void makeAppointment(const Appointment &appointment);
-    void changeAppointment(const std::string &appointmentId, const Appointment &newAppointment);
-    void deleteAppointment(const std::string &appointmentId);
+    void changeAppointment(std::vector<Appointment> &appointments, const std::string &appointmentId, const Appointment &newAppointment);
+    void deleteAppointment(std::vector<Appointment> &appointments, const std::string &appointmentId);
 
     const std::string& getName() const;
     const std::string& getEmail() const;

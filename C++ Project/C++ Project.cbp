@@ -34,16 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="appointments.csv" />
 		<Unit filename="include/Appointment.h" />
 		<Unit filename="include/Customer.h" />
-		<Unit filename="include/Date_app.h" />
 		<Unit filename="include/Employee.h" />
 		<Unit filename="include/customer_menu.h" />
 		<Unit filename="include/input_output.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Appointment.cpp" />
 		<Unit filename="src/Customer.cpp" />
-		<Unit filename="src/Date_app.cpp" />
 		<Unit filename="src/Employee.cpp" />
 		<Unit filename="src/customer_menu.cpp" />
 		<Unit filename="src/input_output.cpp" />
